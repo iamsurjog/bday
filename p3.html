@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Egg</title>
+    <style>
+@property --scroll-y-position {
+  syntax: "<percentage>";
+  initial-value: -10%;
+  inherits: false;
+}
+@property --reflection-y-position {
+  syntax: "<percentage>";
+  initial-value: -50%;
+  inherits: false;
+}
+@property --scrollbar-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+@property --opacity-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.1;
+}
+@property --opacity-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.1;
+}
+@property --opacity-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.1;
+}
+@property --opacity-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.1;
+}
+
+@property --text-offset-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 10;
+}
+@property --text-offset-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 10;
+}
+@property --text-offset-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 10;
+}
+@property --text-offset-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 10;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+body {
+  margin: 0;
+  background: black;
+  height: 900px;
+  font-family: sans-serif;
+}
+.scrollbar {
+  width: 4px;
+  height: 100%;
+  background-color: var(--scrollbar-color);
+  background-image: radial-gradient(
+    circle at 0% var(--scroll-y-position),
+    rgb(112, 153, 255) 0%,
+    rgba(56, 106, 249, 0.79135) 10px,
+    rgba(10, 76, 242, 0.53) 20px,
+    rgba(255, 255, 255, 0) 40px,
+    rgba(49, 49, 49, 0) 100%
+  );
+  animation: on-scrolling both linear;
+  animation-timeline: scroll();
+  animation-range: 10vh;
+}
+
+.container {
+  width: 350px;
+  height: 100%;
+  background: linear-gradient(
+    132deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(238, 238, 238, 0.03) 20%,
+    rgba(202, 202, 202, 0.04) 70%,
+    rgba(171, 171, 171, 0.02) 100%
+  );
+  border: solid rgba(255, 255, 255, 0.06) 1px;
+  margin-left: 15px;
+  position: relative;
+}
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 76, 242, 0) 0%,
+    rgba(10, 76, 242, 0.75203) 38.288288288288285%,
+    rgb(77, 127, 255) 50.9132179054054%,
+    rgba(10, 76, 242, 0.75248) 63.06306306306306%,
+    rgba(10, 76, 242, 0) 100%
+  );
+  background-repeat: no-repeat;
+  background-position-y: var(--reflection-y-position);
+  animation: on-scrolling both linear;
+  animation-timeline: scroll();
+  animation-range: 10vh;
+}
+.container::before {
+  background-size: 1px 150px;
+  filter: blur(1px);
+}
+.container::after {
+  background-size: 10px 150px;
+  filter: blur(10px);
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40vh;
+  padding-bottom: 40vh;
+}
+
+p {
+  background-image: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.9) 90%,
+    rgb(191, 209, 255) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 20px;
+  line-height: 1.5em;
+  --opacity-1: 0.1;
+  --opacity-2: 0.1;
+  --opacity-3: 0.1;
+  --opacity-4: 0.1;
+  --text-offset-1: 10;
+  --text-offset-2: 10;
+  --text-offset-3: 10;
+  --text-offset-4: 10;
+  animation: on-scrolling both linear;
+  animation-timeline: scroll();
+  animation-range: 10vh;
+}
+
+p:nth-child(1) {
+  opacity: var(--opacity-1);
+  transform: translateY(calc(var(--text-offset-1) * 1px));
+}
+p:nth-child(2) {
+  opacity: var(--opacity-2);
+  transform: translateY(calc(var(--text-offset-2) * 1px));
+}
+p:nth-child(3) {
+  opacity: var(--opacity-3);
+  transform: translateY(calc(var(--text-offset-3) * 1px));
+}
+p:nth-child(4) {
+  opacity: var(--opacity-4);
+  transform: translateY(calc(var(--text-offset-4) * 1px));
+}
+p:nth-child(5) {
+  opacity: var(--opacity-5);
+  transform: translateY(calc(var(--text-offset-5) * 1px));
+}
+@keyframes on-scrolling {
+  0% {
+    --scroll-y-position: -10%;
+    --reflection-y-position: -22%;
+  }
+  1% {
+    --scrollbar-color: rgba(255, 255, 255, 0.1);
+  }
+  25% {
+    --opacity-1: 1;
+    --opacity-2: 0.1;
+    --opacity-3: 0.1;
+    --opacity-4: 0.1;
+	--opacity-5: 0.1;
+
+
+    --text-offset-1: 0;
+    --text-offset-2: 10;
+    --text-offset-3: 10;
+    --text-offset-4: 10;
+    --text-offset-5: 10;
+  }
+  50% {
+    --scroll-y-position: 50%;
+    --reflection-y-position: 50%;
+    --opacity-1: 0.1;
+    --opacity-2: 1;
+    --opacity-3: 0.1;
+    --opacity-4: 0.1;
+    --opacity-5: 0.1;
+
+    --text-offset-1: 10;
+    --text-offset-2: 0;
+    --text-offset-3: 10;
+    --text-offset-4: 10;
+    --text-offset-5: 10;
+  }
+  60% {
+    --opacity-1: 0.1;
+    --opacity-2: 0.1;
+    --opacity-3: 1;
+    --opacity-4: 0.1;
+    --opacity-5: 0.1;
+
+    --text-offset-1: 10;
+    --text-offset-2: 10;
+    --text-offset-3: 0;
+    --text-offset-4: 10;
+    --text-offset-5: 10;
+  }
+  90% {
+    --opacity-1: 0.1;
+    --opacity-2: 0.1;
+    --opacity-3: 0.1;
+    --opacity-4: 1;
+    --opacity-5: 0.1;
+
+    --text-offset-1: 10;
+    --text-offset-2: 10;
+    --text-offset-3: 10;
+    --text-offset-4: 0;
+	--text-offset-5: 10;
+
+  }
+  100% {
+    --text-offset-1: 10;
+    --text-offset-2: 10;
+    --text-offset-3: 10;
+    --text-offset-4: 10;
+    --text-offset-5: 0;
+    --opacity-1: 0.1;
+    --opacity-2: 0.1;
+    --opacity-3: 0.1;
+    --opacity-4: 0.1;
+    --opacity-5: 1;
+    --scroll-y-position: 105%;
+    --reflection-y-position: 115%;
+    --scrollbar-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+
+.frame {
+  width: 90%;
+  margin: 40px auto;
+  text-align: center;
+}
+button {
+  margin: 20px;
+}
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+
+
+/* 15 */
+.btn-15 {
+  background: #000;
+  border: none;
+  z-index: 1;
+}
+.btn-15:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  background-color: #F00090;
+  border-radius: 5px;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  transition: all 0.3s ease;
+}
+.btn-15:hover {
+  color: #fff;
+}
+.btn-15:hover:after {
+  left: 0;
+  width: 100%;
+}
+.btn-15:active {
+  top: 2px;
+}
+
+
+
+</style>
+</head>
+<body>
+<main>
+  <div class="scrollbar"></div>
+  <div class="container">
+    <p>
+      So as you already probably know that free will is a scam. We all have our destinies and purpose to exist. So trying to fight against that it futile. It is better to just give up and be a spectator in life.</p>
+    <p>
+      Or at least that's what I believed.<br>Untill I met you.<br>You showed me that even in our lives even if we do not do much for ourselves, we can affect others around us. It is impossible to leave this world without a mark.</p>
+    <p>
+      And if that is the case, being a spectator in life is pointless. It is better to take up your life in your own hands and do something about it instead of just doing nothing and complaining about it.</p>
+    <p>
+      Anyway the point of all this is to say, Thank you. And I don't mean just for waking me up every morning or for reminding me of due dates or even just making my life more entertaining, but for changing me on a pretty much fundamental level. So again on this very important day I would like to say thank you.</p>
+	<p>
+      Oh and the main reason why I sent you this,</p>
+	 <button class="custom-btn btn-15" onclick="window.location.href='p4.html';"  >Click here</button> 
+  </div>
+</main>
+ 
+</body>
